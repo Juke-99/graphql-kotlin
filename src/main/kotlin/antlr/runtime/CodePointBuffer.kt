@@ -35,11 +35,11 @@ open class CodePointBuffer {
     throw UnsupportedOperationException("Not reached")
   }
 
-  open fun position(newPosition: Int): Int {
+  open fun position(newPosition: Int) {
     when(typo) {
-      Type.BYTE -> return byteBuffer.position(newPosition)
-      Type.CHAR -> return charBuffer.position(newPosition)
-      Type.INT -> return intBuffer.position(newPosition)
+      Type.BYTE -> byteBuffer.position(newPosition)
+      Type.CHAR -> charBuffer.position(newPosition)
+      Type.INT -> intBuffer.position(newPosition)
     }
 
     throw UnsupportedOperationException("Not reached")
