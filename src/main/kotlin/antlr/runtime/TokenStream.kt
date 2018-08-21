@@ -1,6 +1,6 @@
 package antlr.runtime
 
-open interface TokenSource : IntStream {
+open interface TokenStream : IntStream {
   open fun LT(k: Int): Token
   open fun get(index: Int): Token
   open fun getTokenSource(): TokenSource

@@ -1,0 +1,13 @@
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\BufferedTokenStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\CharStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\CharStreams.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\CodePointBuffer.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\CodePointCharStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\CommonTokenStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\IntStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\misc\Interval.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\RuleContext.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\Token.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\TokenSource.kt
+D:\graphql-kotlin-project\src\main\kotlin\antlr\runtime\TokenStream.kt
+D:\graphql-kotlin-project\src\main\kotlin\Main.kt
