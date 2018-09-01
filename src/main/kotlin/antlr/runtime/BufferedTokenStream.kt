@@ -17,7 +17,7 @@ open class BufferedTokenStream : TokenStream {
 
   override open fun seek(index: Int) {
     lazyInit()
-    p = abjustSeekIndex(index)
+    p = adjustSeekIndex(index)
   }
 
   override open fun size(): Int = tokens.size()
@@ -33,7 +33,28 @@ open class BufferedTokenStream : TokenStream {
     }
 
     if(!skipEofCheck && LA(1) == EOF) throw IllegalStateException("cannot consume EOF")
-    if(sync(p + 1)) p = abjustSeekIndex(p + 1)
+    if(sync(p + 1)) p = adjustSeekIndex(p + 1)
+  }
+
+  override open fun get(i: Int): Token {
+    if(i < 0 || i >= tokens.size()) throw IndexOutOfBoundsException("token index " + i + " out of range 0.." + (tokens.size() - 1))
+    return tokens.get(i)
+  }
+
+  open fun get(start: Int, stop: Int): List<Token> {
+    if(start < 0 || stop < 0) return null
+    lazyInit()
+    val subset: List<Token> = ArrayList<Token>()
+    if(stop >= tokens.size()) stop = tokens.size() - 1
+    var i: Int = 0
+
+    while(i <= stop) {
+      val t: Token = tokens.get(i)
+      if(t.getType() == Token.EOF) break
+      subset.add(t)
+    }
+
+    return subset
   }
 
   override open fun LA(i: Int): Token = LT(i).getType()
@@ -87,6 +108,28 @@ open class BufferedTokenStream : TokenStream {
     if(start != null && stop != null) return getText(Interval.of(start.getTokenIndex(), stop.getTokenIndex()))
     return ""
   }
+
+  protected fun lazyInit() {
+    if(p == -1) setup()
+  }
+
+  protected fun setup() {
+    sync(0)
+    p = adjustSeekIndex(0)
+  }
+
+  protected fun sync(i: Int): Boolean {
+    assert(i >= 0)
+    val n: Int = i - tokens.size() + 1
+    if(n > 0) {
+      val fetch: Int = fetch(n)
+      return fetch >= n
+    }
+
+    return true
+  }
+
+  protected fun adjustSeekIndex(i: Int): Int = i
 
   open fun fill() {
     lazyInit()
